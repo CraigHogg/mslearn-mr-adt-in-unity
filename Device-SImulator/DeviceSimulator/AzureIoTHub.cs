@@ -17,11 +17,11 @@ namespace DeviceSimulator
         /// Please replace with correct connection string value
         /// The connection string could be got from Azure IoT Hub -> Shared access policies -> iothubowner -> Connection String:
         /// </summary>
-        private const string iotHubConnectionString = "";
-        private const string adtInstanceUrl = "";
-        private const string alertTurbineId = "T102";
+        private const string iotHubConnectionString = "HostName=RaspPiCBH.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=dY23kNXXq/nG22i3SgpxynG7vwQnt8Gc5HKQkpfkYFE=";
+        private const string adtInstanceUrl = "https://RaspPiCBH.azure-devices.net";
+        private const string alertTurbineId = "Fridge";
         private const string alertVariableName = "Alert";
-        private const string alertDescription = "Light icing (rotor bl. ice sensor)";
+        private const string alertDescription = "Temp too low";
         private const double alertTemp = -6.0D;
         private const double alertPower = 200.0D;
         private const double alertWindSpeed = 7.0D;
