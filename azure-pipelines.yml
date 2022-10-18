@@ -13,3 +13,36 @@
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
+
+name: DeployAzureBicep
+trigger:
+  branches:
+    include:
+    - main
+variables:
+- name: resourceGroupName
+  value: 'ADTCBH-rg'
+- name: location
+  value: 'uksouth'
+- name: 93b5cedf-c0a8-4995-b615-2ab4c64f5a84
+  value: 'AzureConnections'
+pool:
+  vmImage: windows-latest
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    steps:
+    - task: AzureCLI@2
+      displayName: 'build bicep artifact'
+      inputs:
+        azureSubscription: $(azureSubscription)
+        scriptType: 'pscore'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'az bicep build --ARM-Template/azuredeploy.bicep'
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish artifact in pipeline'
+      inputs:
+        PathtoPublish: '$(Build.SourcesDirectory)/ARM-Template/azuredeploy.json'
+        ArtifactName: 'finishedTemplate'
+        publishLocation: 'Container'
