@@ -1,3 +1,5 @@
+parameters:
+  solution: '**/*.sln'
 # Starter pipeline
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
