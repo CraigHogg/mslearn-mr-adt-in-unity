@@ -1,17 +1,3 @@
-parameters:
-  solution: '**/*.sln'
-# Starter pipeline
-- task: AzureResourceManagerTemplateDeployment@3
-  inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'Visual Studio Enterprise Subscription – MPN-Brad(93b5cedf-c0a8-4995-b615-2ab4c64f5a84)'
-    subscriptionId: '93b5cedf-c0a8-4995-b615-2ab4c64f5a84'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: 'ADTCBH-rg'
-    location: 'UK South'
-    templateLocation: 'URL of the file'
-    csmFileLink: 'https://github.com/CraigHogg/mslearn-mr-adt-in-unity/blob/main/ARM-Template/azuredeploy.bicep'
-    deploymentMode: 'Incremental'
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
@@ -48,3 +34,16 @@ stages:
         PathtoPublish: '$(Build.SourcesDirectory)/ARM-Template/azuredeploy.json'
         ArtifactName: 'finishedTemplate'
         publishLocation: 'Container'
+        
+# Starter pipeline
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'Visual Studio Enterprise Subscription – MPN-Brad(93b5cedf-c0a8-4995-b615-2ab4c64f5a84)'
+    subscriptionId: '93b5cedf-c0a8-4995-b615-2ab4c64f5a84'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'ADTCBH-rg'
+    location: 'UK South'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://github.com/CraigHogg/mslearn-mr-adt-in-unity/blob/main/ARM-Template/azuredeploy.bicep'
+    deploymentMode: 'Incremental'
