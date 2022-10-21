@@ -8,7 +8,6 @@ pool:
 
 variables:
   - group: mslearn
-  isMaster: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 
 stages:
 - stage: DeployBicep
