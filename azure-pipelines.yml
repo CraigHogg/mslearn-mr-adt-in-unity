@@ -1,0 +1,30 @@
+trigger:
+  branches:
+    include:
+    - '*'
+  
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  - group: mslearn
+
+stages:
+- stage: DeployBicep
+  jobs:
+  - job: AzureResourceManagerTemplateDeployment@3
+    steps:
+      # Run Starter pipeline
+      - script: Run Starter pipeline
+# Starter pipeline
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'Visual Studio Enterprise Subscription – MPN-Brad(93b5cedf-c0a8-4995-b615-2ab4c64f5a84)'
+    subscriptionId: '93b5cedf-c0a8-4995-b615-2ab4c64f5a84'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'ADTCBH-rg'
+    location: 'UK South'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://github.com/CraigHogg/mslearn-mr-adt-in-unity/blob/main/ARM-Template/azuredeploy.bicep'
+    deploymentMode: 'Incremental'
