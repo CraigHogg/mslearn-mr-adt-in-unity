@@ -1,3 +1,22 @@
+trigger:
+  branches:
+    include:
+    - '*'
+  
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  - group: mslearn
+  isMaster: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
+
+stages:
+- stage: DeployBicep
+  jobs:
+  - job: AzureResourceManagerTemplateDeployment@3
+    steps:
+      # Run Starter pipeline
+      - script: Run Starter pipeline
 # Starter pipeline
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
